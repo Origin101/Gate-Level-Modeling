@@ -1,0 +1,64 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001faa8f4a790 .scope module, "circuit5_tb" "circuit5_tb" 2 4;
+ .timescale -9 -9;
+v000001faa8f4be80_0 .var "A", 0 0;
+v000001faa8f4bf20_0 .var "B", 0 0;
+v000001faa8f4bfc0_0 .net "carry", 0 0, L_000001faa8f48d60;  1 drivers
+v000001faa8fdc7a0_0 .net "sum", 0 0, L_000001faa8f48cf0;  1 drivers
+S_000001faa8f86fe0 .scope module, "wew" "circuit5" 2 11, 3 1 0, S_000001faa8f4a790;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /OUTPUT 1 "sum";
+    .port_info 3 /OUTPUT 1 "carry";
+L_000001faa8f48c10 .functor NOT 1, v000001faa8f4bf20_0, C4<0>, C4<0>, C4<0>;
+L_000001faa8f48eb0 .functor NOT 1, v000001faa8f4be80_0, C4<0>, C4<0>, C4<0>;
+L_000001faa8f48c80 .functor AND 1, v000001faa8f4be80_0, L_000001faa8f48c10, C4<1>, C4<1>;
+L_000001faa8f48ba0 .functor AND 1, v000001faa8f4bf20_0, L_000001faa8f48eb0, C4<1>, C4<1>;
+L_000001faa8f48cf0 .functor OR 1, L_000001faa8f48ba0, L_000001faa8f48c80, C4<0>, C4<0>;
+L_000001faa8f48d60 .functor AND 1, v000001faa8f4be80_0, v000001faa8f4bf20_0, C4<1>, C4<1>;
+v000001faa8f470a0_0 .net "A", 0 0, v000001faa8f4be80_0;  1 drivers
+v000001faa8f472e0_0 .net "B", 0 0, v000001faa8f4bf20_0;  1 drivers
+v000001faa8f46dd0_0 .net "W", 0 0, L_000001faa8f48c80;  1 drivers
+v000001faa8f87170_0 .net "X", 0 0, L_000001faa8f48c10;  1 drivers
+v000001faa8f87210_0 .net "Y", 0 0, L_000001faa8f48eb0;  1 drivers
+v000001faa8f4bca0_0 .net "Z", 0 0, L_000001faa8f48ba0;  1 drivers
+v000001faa8f4bd40_0 .net "carry", 0 0, L_000001faa8f48d60;  alias, 1 drivers
+v000001faa8f4bde0_0 .net "sum", 0 0, L_000001faa8f48cf0;  alias, 1 drivers
+    .scope S_000001faa8f4a790;
+T_0 ;
+    %vpi_call 2 15 "$monitor", "time=%d:%b   %b  SUM = %b\012", $time, v000001faa8f4be80_0, v000001faa8f4bf20_0, v000001faa8fdc7a0_0, v000001faa8f4bfc0_0 {0 0 0};
+    %vpi_call 2 16 "$dumpfile", "circuit5_tb.vcd" {0 0 0};
+    %vpi_call 2 17 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001faa8f4a790 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001faa8f4be80_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001faa8f4bf20_0, 0, 1;
+    %delay 20, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001faa8f4be80_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001faa8f4bf20_0, 0, 1;
+    %delay 20, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001faa8f4be80_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001faa8f4bf20_0, 0, 1;
+    %delay 20, 0;
+    %vpi_call 2 28 "$display", "test complete HALF-ADDER" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "halfadder_tb.v";
+    "./halfadder.v";
