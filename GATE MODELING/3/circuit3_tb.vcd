@@ -1,0 +1,46 @@
+$date
+	Mon Sep 20 15:49:24 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module circuit3_tb $end
+$var wire 1 ! X $end
+$var reg 1 " A $end
+$var reg 1 # B $end
+$var reg 1 $ C $end
+$scope module wew $end
+$var wire 1 " A $end
+$var wire 1 # B $end
+$var wire 1 $ C $end
+$var wire 1 ! X $end
+$var wire 1 % Y $end
+$var wire 1 & Z $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0&
+1%
+0$
+0#
+0"
+0!
+$end
+#20
+0%
+1$
+#40
+1!
+1&
+1%
+1#
+#60
+0!
+0&
+1"
+#80
