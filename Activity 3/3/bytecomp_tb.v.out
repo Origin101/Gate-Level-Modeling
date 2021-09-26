@@ -1,0 +1,80 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001f92109bbc0 .scope module, "bytecomparator_tb" "bytecomparator_tb" 2 4;
+ .timescale -9 -9;
+v000001f920f868c0_0 .var "a", 7 0;
+v000001f920f95c80_0 .var "b", 7 0;
+v000001f920f95d20_0 .var "en", 0 0;
+v000001f920f95dc0_0 .net "f", 0 0, L_000001f920f95f00;  1 drivers
+S_000001f92109bd50 .scope module, "wew" "bytecomparator" 2 9, 3 1 0, S_000001f92109bbc0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 8 "a";
+    .port_info 1 /INPUT 8 "b";
+    .port_info 2 /INPUT 1 "en";
+    .port_info 3 /OUTPUT 1 "f";
+L_000001f92109a480 .functor XOR 8, v000001f920f868c0_0, v000001f920f95c80_0, C4<00000000>, C4<00000000>;
+L_000001f920f86960 .functor OR 1, L_000001f920f95e60, C4<0>, C4<0>, C4<0>;
+L_000001f920f95f00 .functor NOTIF1 1, L_000001f920f86960, v000001f920f95d20_0, C4<0>, C4<0>;
+v000001f921097650_0 .net *"_ivl_2", 0 0, L_000001f920f95e60;  1 drivers
+v000001f92109bee0_0 .net "a", 7 0, v000001f920f868c0_0;  1 drivers
+v000001f920f865a0_0 .net "b", 7 0, v000001f920f95c80_0;  1 drivers
+v000001f920f86640_0 .net "c", 7 0, L_000001f92109a480;  1 drivers
+v000001f920f866e0_0 .net "d", 0 0, L_000001f920f86960;  1 drivers
+v000001f920f86780_0 .net "en", 0 0, v000001f920f95d20_0;  1 drivers
+v000001f920f86820_0 .net "f", 0 0, L_000001f920f95f00;  alias, 1 drivers
+L_000001f920f95e60 .part L_000001f92109a480, 0, 1;
+    .scope S_000001f92109bbc0;
+T_0 ;
+    %vpi_call 2 12 "$dumpfile", "bytecomparator_tb.vcd" {0 0 0};
+    %vpi_call 2 13 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001f92109bbc0 {0 0 0};
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v000001f920f868c0_0, 0, 8;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v000001f920f95c80_0, 0, 8;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001f920f95d20_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_000001f92109bbc0;
+T_1 ;
+    %delay 2, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001f920f95d20_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_000001f92109bbc0;
+T_2 ;
+    %delay 2, 0;
+    %load/vec4 v000001f920f868c0_0;
+    %addi 1, 0, 8;
+    %store/vec4 v000001f920f868c0_0, 0, 8;
+    %delay 2, 0;
+    %load/vec4 v000001f920f95c80_0;
+    %addi 0, 0, 8;
+    %store/vec4 v000001f920f95c80_0, 0, 8;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_000001f92109bbc0;
+T_3 ;
+    %vpi_call 2 37 "$monitor", $time, " en = %b , a = %b ,b = %b ,f = %b ", v000001f920f95d20_0, v000001f920f868c0_0, v000001f920f95c80_0, v000001f920f95dc0_0 {0 0 0};
+    %end;
+    .thread T_3;
+    .scope S_000001f92109bbc0;
+T_4 ;
+    %delay 30, 0;
+    %vpi_call 2 41 "$stop" {0 0 0};
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "bytecomp_tb.v";
+    "./bytecomp.v";
